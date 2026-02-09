@@ -8,36 +8,28 @@ import ResultPage from "./Components/ResultPage";
 function App() {
 
   const [username, setUsername] = useState("");
-  const [usersData, setUsersData] = useState({});
   const [showQuiz, setShowQuiz] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [currentResult, setCurrentResult] = useState(null);
 
-  // Load local storage
+  // Load last result for current user from localStorage
   useEffect(() => {
-    const storedUsers = localStorage.getItem("users");
-    const lastUser = localStorage.getItem("lastUsername");
+    const storedUsername = localStorage.getItem("currentUsername");
+    const storedResult = localStorage.getItem("currentResult");
 
-    if (storedUsers) setUsersData(JSON.parse(storedUsers));
-    if (lastUser) setUsername(lastUser);
+    if (storedUsername) setUsername(storedUsername);
+    if (storedResult) {
+      setCurrentResult(JSON.parse(storedResult));
+      setShowResult(true);
+    }
   }, []);
-
-  const userExists = usersData[username];
 
   // Start Quiz
   const startQuiz = () => {
-    localStorage.setItem("lastUsername", username);
     setShowQuiz(true);
     setShowResult(false);
     setAnswers([]);
-  };
-
-  // View Result
-  const viewResults = () => {
-    setCurrentResult(usersData[username]);
-    setShowResult(true);
-    setShowQuiz(false);
   };
 
   // Submit Quiz
@@ -57,15 +49,10 @@ function App() {
 
     const res = { correct, wrong, percent };
 
-    const updatedUsers = {
-      ...usersData,
-      [username]: res
-    };
+    // Save in localStorage for current user
+    localStorage.setItem("currentUsername", username);
+    localStorage.setItem("currentResult", JSON.stringify(res));
 
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
-    localStorage.setItem("lastUsername", username);
-
-    setUsersData(updatedUsers);
     setCurrentResult(res);
     setShowQuiz(false);
     setShowResult(true);
@@ -97,9 +84,7 @@ function App() {
     <UserPage
       username={username}
       setUsername={setUsername}
-      userExists={userExists}
       startQuiz={startQuiz}
-      viewResults={viewResults}
     />
   );
 }
