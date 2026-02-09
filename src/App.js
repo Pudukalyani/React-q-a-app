@@ -12,21 +12,31 @@ function App() {
   const [showResult, setShowResult] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [currentResult, setCurrentResult] = useState(null);
+  const [userExists, setUserExists] = useState(false);
 
   // Load last result for current user from localStorage
   useEffect(() => {
     const storedUsername = localStorage.getItem("currentUsername");
     const storedResult = localStorage.getItem("currentResult");
+    const storedAnswers = localStorage.getItem('currentAnswers');
+    if (storedUsername) {
+      setUsername(storedUsername);
+      setUserExists(true);
+    }
 
-    if (storedUsername) setUsername(storedUsername);
+    if (storedAnswers) {
+      setAnswers(JSON.parse(storedAnswers));
+      setShowQuiz(true);
+    }
+
     if (storedResult) {
       setCurrentResult(JSON.parse(storedResult));
-      setShowResult(true);
     }
   }, []);
 
   // Start Quiz
   const startQuiz = () => {
+    localStorage.setItem("currentUsername", username);
     setShowQuiz(true);
     setShowResult(false);
     setAnswers([]);
@@ -50,8 +60,9 @@ function App() {
     const res = { correct, wrong, percent };
 
     // Save in localStorage for current user
-    localStorage.setItem("currentUsername", username);
+    
     localStorage.setItem("currentResult", JSON.stringify(res));
+    localStorage.removeItem("currentAnswers");
 
     setCurrentResult(res);
     setShowQuiz(false);
@@ -73,7 +84,10 @@ function App() {
     return (
       <QuizPage
         answers={answers}
-        setAnswers={setAnswers}
+        setAnswers={(ans) => {
+          localStorage.setItem("currentAnswers", JSON.stringify(ans));
+          setAnswers(ans)
+        }}
         submitQuiz={submitQuiz}
       />
     );
@@ -85,6 +99,8 @@ function App() {
       username={username}
       setUsername={setUsername}
       startQuiz={startQuiz}
+      viewResults={() => setShowResult(true)}
+      userExists={userExists}
     />
   );
 }

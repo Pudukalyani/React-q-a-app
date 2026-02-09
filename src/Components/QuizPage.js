@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { QUESTIONS } from "../questions";
 
 function QuizPage({ answers, setAnswers, submitQuiz }) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const q = QUESTIONS[currentIndex];
+
+  useEffect(() => {
+    // Load saved answers for current user from localStorage
+    const storedAnswers = localStorage.getItem("currentAnswers");
+    const answers = JSON.parse(storedAnswers);
+    if (answers && answers.length > 0) {
+      setAnswers(answers);
+      setCurrentIndex(answers.length);
+    }
+  }, []);
 
   // Check if current question is answered
   const isAnswered = () => {

@@ -3,10 +3,9 @@ import React from "react";
 function UserPage({
   username,
   setUsername,
-  userExists,
   startQuiz,
   viewResults,
-  
+  userExists
 }) {
 
   // NEW USER FORM
