@@ -1,0 +1,183 @@
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3d6ce;
+}
+
+/* Main Card */
+.container {
+  width: 350px;
+  padding: 40px 30px;
+  border-radius: 25px;
+  text-align: center;
+
+  background: linear-gradient(135deg, #0aa6a6, #5a3ea6);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+.container h2 {
+  color: white;
+  margin-bottom: 30px;
+}
+
+/* Input Field */
+.container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+
+  border: none;
+  border-radius: 25px;
+
+  background: rgba(255,255,255,0.9);
+  outline: none;
+
+  font-size: 14px;
+}
+
+/* Button */
+.container button {
+  width: 100%;
+  padding: 12px;
+
+  border: none;
+  border-radius: 25px;
+
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Button Hover */
+.container button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Disabled Button */
+.container button:disabled {
+  background: gray;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+/* Make inputs inline and clean */
+.option input[type="radio"],
+.option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Optional better text spacing */
+.option label,
+.option span {
+  font-size: 15px;
+  cursor: pointer;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f3d6ce;
+}
+
+/* CENTER LAYOUT (Login + Result Pages Only) */
+.container {
+  width: 350px;
+  padding: 40px 30px;
+  border-radius: 25px;
+  text-align: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: linear-gradient(135deg, #ddf1f1,lightblue);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* QUIZ PAGE NORMAL TOP LAYOUT */
+.quiz-container {
+  width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+}
+
+/* HEADINGS */
+.container h2,
+.quiz-container h3 {
+  color: white;
+}
+
+.quiz-container h3 {
+  color: black;
+}
+
+/* INPUT */
+.container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.9);
+  outline: none;
+}
+
+/* QUIZ INPUT NORMAL */
+.quiz-container input[type="text"],
+.quiz-container input[type="number"] {
+  padding: 8px;
+  width: 250px;
+}
+
+/* BUTTON */
+.container button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg,lightblue, #00f2fe);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quiz-container button {
+  padding: 8px 14px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+/* RADIO + CHECKBOX LINE FORMAT */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.option input[type="radio"],
+.option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
